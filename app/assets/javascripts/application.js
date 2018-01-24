@@ -36,8 +36,6 @@
 //= require cocoon
 //= require awards
 //= require searchbox
-//= require employer/create_job
-//= require employer/edit_job
 //= require change_avatar_cover
 //= require certificates
 //= require search_friends
