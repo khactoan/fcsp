@@ -2,7 +2,7 @@ class CreateInfoUsers < ActiveRecord::Migration[5.0]
   def change
     create_table :info_users do |t|
       t.integer :relationship_status, default: 0, null: false
-      t.text :introduce
+      t.text :introduction
       t.string :quote
       t.string :ambition
       t.string :phone
