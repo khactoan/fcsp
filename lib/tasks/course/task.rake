@@ -3,54 +3,76 @@ namespace :db do
   task task: :environment do
     tasks = [
       {
-        user_email: "tran.tuan.nghia@framgia.com",
+        user_email: "nguyen.thi.huong@framgia.com.stg",
         subject_name: "Git Tutorial",
         course_name: "[KN] Ruby on Rails 03/10/2016",
         data: [
           {
-            name: "Getting Started", status: "in_progress",
+            name: "Getting Started",
+            status: "in_progress",
             content: "Get an introduction to project git",
             task_type: "assignments"
           },
           {
-            name: "Git Branching", status: "in_progress",
+            name: "Git Branching",
+            status: "in_progress",
             content: "Get an introduction to project git",
             task_type: "assignments"
           },
           {
-            name: "Distributed Git", status: "in_progress",
+            name: "Distributed Git",
+            status: "in_progress",
             content: "Get an introduction to project git",
             task_type: "assignments"
           },
           {
-            name: "GitHub", status: "init",
+            name: "GitHub",
+            status: "init",
             content: "Get an introduction to project git",
             task_type: "assignments"
           },
           {
-            name: "Git Tools", status: "init",
+            name: "Git Tools",
+            status: "init",
             content: "Get an introduction to project git",
             task_type: "assignments"
           },
           {
-            name: "Customizing Git", status: "init",
+            name: "Customizing Git",
+            status: "init",
             content: "Get an introduction to project git",
             task_type: "assignments"
           }
         ]
       },
       {
-        user_email: "tran.tuan.nghia@framgia.com", subject_name: "Ruby's Project 1",
+        user_email: "nguyen.thi.huong@framgia.com.stg",
+        subject_name: "Ruby's Project 1",
         course_name: "[KN] Ruby on Rails 03/10/2016",
         data: [
           {
-            name: "Requirement understanding", status: "init",
+            name: "Requirement understanding",
+            status: "init",
             content: "Get an introduction to project understanding",
             task_type: "assignments"
           },
           {
-            name: "Design Database", status: "in_progress",
-            content: "Start design database", task_type: "assignments"
+            name: "Design Database",
+            status: "in_progress",
+            content: "Start design database",
+            task_type: "assignments"
+          },
+          {
+            name: "Localization",
+            status: "init",
+            content: "Introduces the concepts and techniques of internationalization and localization.",
+            task_type: "assignments"
+          },
+          {
+            name: "UserDefaults",
+            status: "in_progress",
+            content: "Use NSUserDefaults to save user preferences in a persistent manner.",
+            task_type: "assignments"
           }
         ]
       }
@@ -63,10 +85,14 @@ namespace :db do
 
       task[:data].each do |data|
         task_created = Task.create! name: data[:name],
-          subject_id: subject.id, task_type: data[:task_type],
-          description: data[:content]
-        UserTask.create user_id: user.id,
-          task_id: task_created.id, subject_id: subject.id,
+          subject_id: subject.id,
+          task_type: data[:task_type],
+          description: data[:content],
+          content: data[:content]
+
+        UserTask.create! user_id: user.id,
+          task_id: task_created.id,
+          subject_id: subject.id,
           course_id: course.id,
           status: data[:status]
       end
