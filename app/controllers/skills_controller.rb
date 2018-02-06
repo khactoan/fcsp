@@ -2,39 +2,19 @@ class SkillsController < ApplicationController
   def index;end
 
   def create
-    skill = Skill.find_by name: skill_params[:name]
-    if skill
-      if skill.update_attributes skill_params
-        load_skills
-      else
-        render json: {
-          status: :error
-        }
-      end
+    skill_form = SkillForm.new skill_params, current_user
+
+    if skill_form.save
+      render json: {content: skill_form.content}
     else
-      skill = Skill.new skill_params
-      if skill.save
-        load_skills
-      else
-        render json: {
-          status: :error
-        }
-      end
+      render json: {error: 400}
     end
   end
 
   private
 
   def skill_params
-    params.require(:skill).permit :name,
-      skill_users_attributes: [:id, :user_id, :years]
-  end
-
-  def load_skills
-    @skills = current_user.skill_users.includes :skill
-    render json: {
-      status: :success,
-      html: render_to_string(partial: "users/skill", layout: false)
-    }
+    params.require(:skill).permit :name, :skill_type,
+      skill_users_attributes: [:id, :years, :description]
   end
 end

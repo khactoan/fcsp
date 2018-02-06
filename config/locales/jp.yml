@@ -258,6 +258,8 @@ jp:
       ambition: "野心"
       address: "住所"
       country: "国"
+      soft_skills: "ソフトスキル"
+      description: "説明"
     social_network:
       quote: "見積もり"
       address: "住所"

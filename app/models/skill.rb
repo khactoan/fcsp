@@ -1,4 +1,6 @@
 class Skill < ApplicationRecord
+  enum skill_type: %i(hard_skill soft_skill)
+
   has_many :job_skills, dependent: :destroy
   has_many :jobs, through: :job_skills
   has_many :skill_users, dependent: :destroy
@@ -6,9 +8,7 @@ class Skill < ApplicationRecord
 
   belongs_to :group_skill
 
-  validates :name, presence: true, uniqueness: true,
-    length: {maximum: Settings.max_length_title}
-  validates :description, length: {maximum: Settings.max_length_description}
+  validates :name, presence: true, length: {maximum: Settings.max_length_title}
 
   accepts_nested_attributes_for :skill_users
 end

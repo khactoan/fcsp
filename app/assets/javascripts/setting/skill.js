@@ -7,24 +7,24 @@ $(document).ready(function(){
 
   $('body').on('click', '.create-form .save', function(e){
     e.preventDefault();
-    var form, url, name, years, user_id, data;
-
+    var form, url, name, years, user_id, data, skill_type, description;
     form = $(this).closest('.new_skill');
     url = form.attr('action');
     name = form.find('#skill_name').val();
     years = form.find('#skill_skill_users_attributes__years').val();
-    user_id = form.find('#skill_skill_users_attributes__user_id').val();
-    data = {skill: {name: name, skill_users_attributes: [{user_id: user_id, years: years}]}};
-
+    skill_type = form.find('#skill_skill_type').val();
+    description = form.find('#skill_skill_users_attributes__description').val();
+    data = {skill: {name: name, skill_type: skill_type,
+      skill_users_attributes: [{years: years, description: description}]}};
     $.ajax({
       url: url,
       type: 'POST',
       dataType: 'json',
       data: data,
       success: function(result){
-        if(result.status == "success"){
-          $('.current-skills').html(result.html);
-          form.find('input.short-form').val('');
+        if(result.content.status == "success"){
+          form.closest('.col_full').find('.current-skills').append(result.content.html);
+          form.find('.input-field').val('');
           $.growl.notice({message: I18n.t('setting.notice.update_success')});
         } else {
           $.growl.error({message: I18n.t('setting.notice.update_error')});

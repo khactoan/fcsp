@@ -1,0 +1,15 @@
+<li class="list-group-item">
+  <div class="show-form">
+    <span><%= hard_skill.name %></span>
+    <span class="button-edit">
+      <i class="fa fa-pencil"><%= t "edit" %></i>
+    </span>
+    <span class="skill-level pull-right">
+      <%= format_skill_years @user_presenter.skill_user(hard_skill).years %>
+      <%= t "skill.years" %>
+    </span>
+  </div>
+  <div class="edit-form">
+    <%= render "users/form_update_skill", skill_user: @user_presenter.skill_user(hard_skill) %>
+  </div>
+</li>

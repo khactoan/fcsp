@@ -24,8 +24,8 @@ class UsersController < ApplicationController
   def edit
     @info_user = current_user.info_user
     @skill = Skill.new
-    @skills = current_user.skill_users.includes :skill
     @image = Image.new
+    @user_presenter = UserPresenter.new current_user
   end
 
   def update
