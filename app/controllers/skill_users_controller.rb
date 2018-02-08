@@ -22,11 +22,10 @@ class SkillUsersController < ApplicationController
   private
 
   def load_skill_users
-    @skills = current_user.skill_users.includes(:skill).order_by_desc
-
+    @user_presenter = UserPresenter.new current_user
     render json: {
       status: :success,
-      html: render_to_string(partial: "users/skill", layout: false)
+      html: render_to_string(partial: "users/hard_skill", collection: @user_presenter.hard_skills, layout: false)
     }
   end
 

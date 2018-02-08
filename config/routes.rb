@@ -22,6 +22,7 @@ Rails.application.routes.draw do
     end
     get :autocomplete_skill_name, on: :collection
   end
+
   resource :user_avatars, only: %i(create update)
   resource :user_covers, only: %i(create update)
   resources :info_users, only: %i(update)

@@ -170,19 +170,19 @@ ActiveRecord::Schema.define(version: 20171114071134) do
   end
 
   create_table "skill_users", force: :cascade do |t|
-    t.integer  "level"
     t.float    "years"
     t.integer  "user_id"
     t.integer  "skill_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "skills", force: :cascade do |t|
     t.string   "name"
-    t.text     "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.integer  "skill_type", default: 0
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "subjects", force: :cascade do |t|

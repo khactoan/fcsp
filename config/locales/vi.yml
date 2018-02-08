@@ -951,6 +951,8 @@ vi:
       ambition: "Tham vọng"
       address: "Địa chỉ"
       country: "Quốc gia"
+      soft_skills: "Kỹ năng mềm"
+      description: "Mô tả"
     album_image:
       no_image: "Không có hình ảnh nào"
     change_avatar:

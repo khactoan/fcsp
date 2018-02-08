@@ -1,0 +1,23 @@
+class UserPresenter
+  def initialize user
+    @user = user
+    @skills = @user.skills
+  end
+
+  def soft_skills
+    @skills.soft_skill
+  end
+
+  def hard_skills
+    @skills.hard_skill
+  end
+
+  def skill_user skill
+    SkillUser.load_skill_user skill, @user
+  end
+
+  def skill_html_content skill
+    ApplicationController.render partial: "users/#{skill.skill_type}",
+      locals: {"#{skill.skill_type}": skill}, assigns: {user_presenter: UserPresenter.new(@user)}
+  end
+end

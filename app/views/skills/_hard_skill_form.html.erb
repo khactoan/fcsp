@@ -1,0 +1,32 @@
+<div class="col_full">
+  <a class="edit-toggle">
+    <h3 class="orange-text"><%= t "skill.hard_skill" %></h3>
+    <span class="top-right-edit"><%= t "setting.profiles.click_to_change" %></span>
+  </a>
+
+  <ul class="list-group current-skills">
+    <%= render partial: "hard_skill", collection: @user_presenter.hard_skills %>
+  </ul>
+
+  <div id="create_skill" class="edit-form create-form">
+    <%= form_for @skill, method: :post do |f| %>
+      <div class="row">
+        <div class="col-md-2"><%= t "name" %></div>
+        <div class="col-md-10">
+          <%= f.autocomplete_field :name, autocomplete_skill_name_users_path,
+            update_elements: {id: "#skill_id"}, class: "form-control short-form input-field" %>
+        </div>
+        <%= f.fields_for "skill_users_attributes[]",
+          @skill.skill_users.build do |ff| %>
+          <div class="row-margin-top">
+            <div class="col-md-2"><%= t "skill.years" %></div>
+            <div class="col-md-10">
+              <%= ff.number_field :years, min: Settings.validate.years.min, class: "form-control short-form input-field" %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <%= render "shared/group_buttons" %>
+    <% end %>
+  </div>
+</div>
